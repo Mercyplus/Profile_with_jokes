@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if request.user.is_authenticated %}
+    <h2> Добро пожаловать <strong>{{user.username}}</strong> | <a href="{% url 'edit' %}">Профиль</a></h2>
+    {% else %}
+    <h2 class="my-2">
+        Профили пользователей с возможностью выбрать шутку. Для просмотра <a href="{% url 'login' %}">войдите</a> или <a
+            href="{% url 'register' %}">зарегистрируйтесь</a>
+    </h2>
+</div>
+{% endif %}
+{% endblock %}

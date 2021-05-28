@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Редактирование аккаунта{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-3">Профиль</h2>
+    <form method="POST" action="{% url 'edit' %}">{% csrf_token %}
+        <div class="form-group">
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+        </div>
+            <input type="submit" class="btn btn-primary" name="save" value="Сохранить">
+    </form>
+    <form action="{% url 'edit' %}" method="POST">{% csrf_token %}
+        <textarea cols="60" rows="5">{{ joke }}</textarea>
+        <input type="submit" name="generate" value="Сгенерировать шутку">
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                Шутки:
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for joke in jokes %}
+        <tr>
+            <td>
+                {{ joke.description }}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
